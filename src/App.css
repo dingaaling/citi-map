@@ -1,0 +1,67 @@
+.App-header {
+  background-color: #A9CEF4;
+  font-size: calc(12px + 1vmin);
+  font-family: 'Roboto Condensed', sans-serif;
+  color: #FFFFFF;
+}
+
+.App-body {
+  background-color: #FFFFFF;
+  font-size: calc(8px + 1vmin);
+  color: #000000;
+}
+
+a:link {
+  color: #000000;
+  background-color: transparent;
+}
+
+a:visited {
+  color: #000000;
+  background-color: transparent;
+}
+
+p {
+  color: #000000;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 1000;
+  font-size: calc(10px + 1vmin);
+}
+
+h1 {
+    line-height: 250%;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+h3 {
+    line-height: 200%;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    color: #A9CEF4;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: calc(10px + 3vmin);
+}
+
+button {
+
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: calc(8px + 1vmin);
+
+}
+
+.leaflet-container {
+    background-color: #FFFFFF;
+    height: 300px;
+    width: 100%;
+}
+
+.leaflet-tile-pane {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+iframe {
+  margin-bottom: 20px;
+}
