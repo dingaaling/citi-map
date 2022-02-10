@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Grid from '@material-ui/core/Grid';
-import {  MapContainer, TileLayer, Marker } from 'react-leaflet'
+import {  Map, TileLayer, Marker } from 'react-leaflet'
 import { iconGlasses, iconMaskhole, iconNoMask } from './icon';
 
 class PathMap extends React.Component {
@@ -13,7 +13,7 @@ render(){
         <Grid container item xs={12} spacing={1}>
           <Grid item xs={2}></Grid>
           <Grid item xs={8}>
-                <MapContainer center={this.props.map_center} zoom={15}>
+                <Map center={this.props.map_center} zoom={15}>
                 <TileLayer
                   attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
                   url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'
@@ -35,7 +35,7 @@ render(){
                 )}
 
 
-                </MapContainer>
+                </Map>
           </Grid>
           <Grid item xs={2}></Grid>
 
