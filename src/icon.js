@@ -1,8 +1,8 @@
 import L from 'leaflet';
 
-const iconGlasses = new L.Icon({
-    iconUrl: require('./images/glasses.png'),
-    iconRetinaUrl: require('./images/glasses.png'),
+const icon1 = new L.Icon({
+    iconUrl: require('./images/icon1.png'),
+    iconRetinaUrl: require('./images/icon1.png'),
     iconAnchor: null,
     popupAnchor: null,
     shadowUrl: null,
@@ -12,9 +12,9 @@ const iconGlasses = new L.Icon({
     className: 'none'
 });
 
-const iconMaskhole = new L.Icon({
-    iconUrl: require('./images/maskhole_red.png'),
-    iconRetinaUrl: require('./images/maskhole_red.png'),
+const icon2 = new L.Icon({
+    iconUrl: require('./images/icon2.png'),
+    iconRetinaUrl: require('./images/icon2.png'),
     iconAnchor: null,
     popupAnchor: null,
     shadowUrl: null,
@@ -24,9 +24,9 @@ const iconMaskhole = new L.Icon({
     className: 'none'
 });
 
-const iconNoMask = new L.Icon({
-    iconUrl: require('./images/no_mask_red.png'),
-    iconRetinaUrl: require('./images/no_mask_red.png'),
+const icon3 = new L.Icon({
+    iconUrl: require('./images/icon3.png'),
+    iconRetinaUrl: require('./images/icon3.png'),
     iconAnchor: null,
     popupAnchor: null,
     shadowUrl: null,
@@ -37,4 +37,4 @@ const iconNoMask = new L.Icon({
 });
 
 
-export { iconGlasses, iconMaskhole, iconNoMask };
+export { icon1, icon2, icon3 };

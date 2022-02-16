@@ -7,7 +7,7 @@ render(){
 
   return (
     <Grid item xs={4}>
-      <div className="emoji-mask">
+      <div className="emoji-class">
         <center><img src={this.props.img} alt={"emoji"} onClick={this.props.function} width="80"/></center>
       </div>
     </Grid>

@@ -2,7 +2,7 @@ import React from 'react';
 
 import Grid from '@material-ui/core/Grid';
 import {  Map, TileLayer, Marker } from 'react-leaflet'
-import { iconGlasses, iconMaskhole, iconNoMask } from './icon';
+import { icon1, icon2, icon3 } from './icon';
 
 class PathMap extends React.Component {
 
@@ -19,18 +19,18 @@ render(){
                   url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'
                 />
 
-                {this.props.mask_list.map((position, idx) =>
-                  <Marker key={`marker-${idx}`} position={position} icon={ iconGlasses }>
+                {this.props.icon1_list.map((position, idx) =>
+                  <Marker key={`marker-${idx}`} position={position} icon={ icon1 }>
                   </Marker>
                 )}
 
-                {this.props.maskhole_list.map((position, idx) =>
-                  <Marker key={`marker-${idx}`} position={position} icon={ iconMaskhole }>
+                {this.props.icon2_list.map((position, idx) =>
+                  <Marker key={`marker-${idx}`} position={position} icon={ icon2 }>
                   </Marker>
                 )}
 
-                {this.props.nomask_list.map((position, idx) =>
-                  <Marker key={`marker-${idx}`} position={position} icon={ iconNoMask }>
+                {this.props.icon3_list.map((position, idx) =>
+                  <Marker key={`marker-${idx}`} position={position} icon={ icon3 }>
                   </Marker>
                 )}
 

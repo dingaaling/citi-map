@@ -11,9 +11,8 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { map_center : [40.762295, -73.968148], heatmap: false,
-                  mask_list : [], maskhole_list : [], nomask_list : [],
-                  glasses_im: 1, maskhole_im: 0, nomask_im: 0};
+    this.state = { map_center : [40.742997028, -73.96749613],
+                  icon1_list : [], icon2_list : [], icon3_list : []};
     this.showPosition = this.showPosition.bind(this)
     this.imageClick = this.imageClick.bind(this)
     this.updateData = this.updateData.bind(this)
@@ -52,25 +51,25 @@ class App extends React.Component {
       }
   }
 
-  updateData(position, maskStatus) {
+  updateData(position, iconStatus) {
 
     let body = {
       timestamp: new Date().toUTCString(),
-      mask_status: maskStatus,
+      icon_status: iconStatus,
       latitude : position.coords.latitude,
       longitude : position.coords.longitude,
       accuracy: position.coords.accuracy,
     };
 
-    switch (maskStatus) {
+    switch (iconStatus) {
       case 0:
-        this.setState({mask_list: this.state.mask_list.concat([[position.coords.latitude, position.coords.longitude]])});
+        this.setState({icon1_list: this.state.icon1_list.concat([[position.coords.latitude, position.coords.longitude]])});
         break;
       case 1:
-        this.setState({maskhole_list: this.state.maskhole_list.concat([[position.coords.latitude, position.coords.longitude]])});
+        this.setState({icon2_list: this.state.icon2_list.concat([[position.coords.latitude, position.coords.longitude]])});
         break;
       case 2:
-        this.setState({nomask_list: this.state.nomask_list.concat([[position.coords.latitude, position.coords.longitude]])});
+        this.setState({icon3_list: this.state.icon3_list.concat([[position.coords.latitude, position.coords.longitude]])});
         break;
       default:
         this.setState({map_center: [position.coords.latitude, position.coords.longitude]});
@@ -87,10 +86,10 @@ class App extends React.Component {
     return this.props.user != null;
   }
 
-  imageClick(maskStatus) {
+  imageClick(iconStatus) {
 
     if(navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => this.updateData(position, maskStatus), this.showError, {timeout:5000,enableHighAccuracy:true});
+        navigator.geolocation.getCurrentPosition((position) => this.updateData(position, iconStatus), this.showError, {timeout:5000,enableHighAccuracy:true});
     } else {
       alert("Geolocation error - please refresh page.");
       }
@@ -115,20 +114,17 @@ render(){
       {!this.isUserLggedIn() && this.getLineSeparator()}
 
       <Emojis onClick = {(param) => this.imageClick(param)}
-        mask_list = {this.state.mask_list}
-        maskhole_list = {this.state.maskhole_list}
-        nomask_list = {this.state.nomask_list}
-        mask_status = {this.state.mask_status}
-        glasses_im = {this.state.glasses_im}
-        maskhole_im = {this.state.maskhole_im}
-        nomask_im = {this.state.nomask_im}
+        icon1_list = {this.state.icon1_list}
+        icon2_list = {this.state.icon2_list}
+        icon3_list = {this.state.icon3_list}
+        icon_status = {this.state.icon_status}
         is_user_logged_in = {this.isUserLggedIn()}>
       </Emojis>
 
       {!this.isUserLggedIn() && <PathMap map_center = {this.state.map_center}
-        mask_list = {this.state.mask_list}
-        maskhole_list = {this.state.maskhole_list}
-        nomask_list = {this.state.nomask_list}/>
+        icon1_list = {this.state.icon1_list}
+        icon2_list = {this.state.icon2_list}
+        icon3_list = {this.state.icon3_list}/>
       }
 
     {this.getLineSeparator()}
