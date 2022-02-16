@@ -2,7 +2,7 @@ import React from 'react';
 
 import Grid from '@material-ui/core/Grid';
 import {  Map, TileLayer, Marker } from 'react-leaflet'
-import { iconGlasses, iconMaskhole, iconNoMask } from './icon';
+import { icon1, icon2, icon3 } from './icon';
 
 class PathMap extends React.Component {
 
@@ -13,24 +13,24 @@ render(){
         <Grid container item xs={12} spacing={1}>
           <Grid item xs={2}></Grid>
           <Grid item xs={8}>
-                <Map center={this.props.map_center} zoom={15}>
+                <Map center={this.props.mapCenter} zoom={15}>
                 <TileLayer
                   attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
                   url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'
                 />
 
-                {this.props.mask_list.map((position, idx) =>
-                  <Marker key={`marker-${idx}`} position={position} icon={ iconGlasses }>
+                {this.props.icon1List.map((position, idx) =>
+                  <Marker key={`marker-${idx}`} position={position} icon={ icon1 }>
                   </Marker>
                 )}
 
-                {this.props.maskhole_list.map((position, idx) =>
-                  <Marker key={`marker-${idx}`} position={position} icon={ iconMaskhole }>
+                {this.props.icon2List.map((position, idx) =>
+                  <Marker key={`marker-${idx}`} position={position} icon={ icon2 }>
                   </Marker>
                 )}
 
-                {this.props.nomask_list.map((position, idx) =>
-                  <Marker key={`marker-${idx}`} position={position} icon={ iconNoMask }>
+                {this.props.icon3List.map((position, idx) =>
+                  <Marker key={`marker-${idx}`} position={position} icon={ icon3 }>
                   </Marker>
                 )}
 

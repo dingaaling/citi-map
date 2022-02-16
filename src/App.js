@@ -6,14 +6,15 @@ import PathMap from './PathMap.js'
 
 //Styling
 import './App.css'
+const startLat = 40.742997028
+const startLon = -73.96749613
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { map_center : [40.762295, -73.968148], heatmap: false,
-                  mask_list : [], maskhole_list : [], nomask_list : [],
-                  glasses_im: 1, maskhole_im: 0, nomask_im: 0};
+    this.state = { mapCenter : [startLat, startLon],
+                  icon1List : [], icon2List : [], icon3List : []};
     this.showPosition = this.showPosition.bind(this)
     this.imageClick = this.imageClick.bind(this)
     this.updateData = this.updateData.bind(this)
@@ -22,7 +23,7 @@ class App extends React.Component {
 
   showPosition(position) {
       // console.log("Logging at: " + position.coords.latitude.toString() +", "+ position.coords.longitude.toString());
-      this.setState({latitude : position.coords.latitude, longitude : position.coords.longitude, map_center : [position.coords.latitude, position.coords.longitude]});
+      this.setState({latitude : position.coords.latitude, longitude : position.coords.longitude, mapCenter : [position.coords.latitude, position.coords.longitude]});
   }
 
   showError(error) {
@@ -52,28 +53,28 @@ class App extends React.Component {
       }
   }
 
-  updateData(position, maskStatus) {
+  updateData(position, iconStatus) {
 
     let body = {
       timestamp: new Date().toUTCString(),
-      mask_status: maskStatus,
+      iconStatus: iconStatus,
       latitude : position.coords.latitude,
       longitude : position.coords.longitude,
       accuracy: position.coords.accuracy,
     };
 
-    switch (maskStatus) {
+    switch (iconStatus) {
       case 0:
-        this.setState({mask_list: this.state.mask_list.concat([[position.coords.latitude, position.coords.longitude]])});
+        this.setState({icon1List: this.state.icon1List.concat([[position.coords.latitude, position.coords.longitude]])});
         break;
       case 1:
-        this.setState({maskhole_list: this.state.maskhole_list.concat([[position.coords.latitude, position.coords.longitude]])});
+        this.setState({icon2List: this.state.icon2List.concat([[position.coords.latitude, position.coords.longitude]])});
         break;
       case 2:
-        this.setState({nomask_list: this.state.nomask_list.concat([[position.coords.latitude, position.coords.longitude]])});
+        this.setState({icon3List: this.state.icon3List.concat([[position.coords.latitude, position.coords.longitude]])});
         break;
       default:
-        this.setState({map_center: [position.coords.latitude, position.coords.longitude]});
+        this.setState({mapCenter: [position.coords.latitude, position.coords.longitude]});
     };
   }
 
@@ -82,15 +83,10 @@ class App extends React.Component {
   };
 
 
-  isUserLggedIn() {
-
-    return this.props.user != null;
-  }
-
-  imageClick(maskStatus) {
+  imageClick(iconStatus) {
 
     if(navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => this.updateData(position, maskStatus), this.showError, {timeout:5000,enableHighAccuracy:true});
+        navigator.geolocation.getCurrentPosition((position) => this.updateData(position, iconStatus), this.showError, {timeout:5000,enableHighAccuracy:true});
     } else {
       alert("Geolocation error - please refresh page.");
       }
@@ -111,24 +107,20 @@ render(){
         <h1><center>MASK MAP</center></h1>
       </header>
 
-      {!this.isUserLggedIn() && this.getLineSeparator()}
-      {!this.isUserLggedIn() && this.getLineSeparator()}
+      {this.getLineSeparator()}
+      {this.getLineSeparator()}
 
       <Emojis onClick = {(param) => this.imageClick(param)}
-        mask_list = {this.state.mask_list}
-        maskhole_list = {this.state.maskhole_list}
-        nomask_list = {this.state.nomask_list}
-        mask_status = {this.state.mask_status}
-        glasses_im = {this.state.glasses_im}
-        maskhole_im = {this.state.maskhole_im}
-        nomask_im = {this.state.nomask_im}
-        is_user_logged_in = {this.isUserLggedIn()}>
+        icon1List = {this.state.icon1List}
+        icon2List = {this.state.icon2List}
+        icon3List = {this.state.icon3List}
+        iconStatus = {this.state.iconStatus}>
       </Emojis>
 
-      {!this.isUserLggedIn() && <PathMap map_center = {this.state.map_center}
-        mask_list = {this.state.mask_list}
-        maskhole_list = {this.state.maskhole_list}
-        nomask_list = {this.state.nomask_list}/>
+      {<PathMap mapCenter = {this.state.mapCenter}
+        icon1List = {this.state.icon1List}
+        icon2List = {this.state.icon2List}
+        icon3List = {this.state.icon3List}/>
       }
 
     {this.getLineSeparator()}
