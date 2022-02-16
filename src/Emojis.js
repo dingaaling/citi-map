@@ -21,13 +21,13 @@ render(){
 
       {!this.props.is_user_logged_in && <Grid container item xs={12} spacing={1}>
         <Grid item xs={4}>
-          <center><h3>{this.props.icon1_list.length}</h3></center>
+          <center><h3>{this.props.icon1List.length}</h3></center>
         </Grid>
         <Grid item xs={4}>
-          <center><h3>{this.props.icon2_list.length}</h3></center>
+          <center><h3>{this.props.icon2List.length}</h3></center>
         </Grid>
         <Grid item xs={4}>
-          <center><h3>{this.props.icon3_list.length}</h3></center>
+          <center><h3>{this.props.icon3List.length}</h3></center>
         </Grid>
       </Grid>
     }

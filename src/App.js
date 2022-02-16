@@ -6,13 +6,15 @@ import PathMap from './PathMap.js'
 
 //Styling
 import './App.css'
+const startLat = 40.742997028
+const startLon = -73.96749613
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { map_center : [40.742997028, -73.96749613],
-                  icon1_list : [], icon2_list : [], icon3_list : []};
+    this.state = { mapCenter : [startLat, startLon],
+                  icon1List : [], icon2List : [], icon3List : []};
     this.showPosition = this.showPosition.bind(this)
     this.imageClick = this.imageClick.bind(this)
     this.updateData = this.updateData.bind(this)
@@ -21,7 +23,7 @@ class App extends React.Component {
 
   showPosition(position) {
       // console.log("Logging at: " + position.coords.latitude.toString() +", "+ position.coords.longitude.toString());
-      this.setState({latitude : position.coords.latitude, longitude : position.coords.longitude, map_center : [position.coords.latitude, position.coords.longitude]});
+      this.setState({latitude : position.coords.latitude, longitude : position.coords.longitude, mapCenter : [position.coords.latitude, position.coords.longitude]});
   }
 
   showError(error) {
@@ -55,7 +57,7 @@ class App extends React.Component {
 
     let body = {
       timestamp: new Date().toUTCString(),
-      icon_status: iconStatus,
+      iconStatus: iconStatus,
       latitude : position.coords.latitude,
       longitude : position.coords.longitude,
       accuracy: position.coords.accuracy,
@@ -63,16 +65,16 @@ class App extends React.Component {
 
     switch (iconStatus) {
       case 0:
-        this.setState({icon1_list: this.state.icon1_list.concat([[position.coords.latitude, position.coords.longitude]])});
+        this.setState({icon1List: this.state.icon1List.concat([[position.coords.latitude, position.coords.longitude]])});
         break;
       case 1:
-        this.setState({icon2_list: this.state.icon2_list.concat([[position.coords.latitude, position.coords.longitude]])});
+        this.setState({icon2List: this.state.icon2List.concat([[position.coords.latitude, position.coords.longitude]])});
         break;
       case 2:
-        this.setState({icon3_list: this.state.icon3_list.concat([[position.coords.latitude, position.coords.longitude]])});
+        this.setState({icon3List: this.state.icon3List.concat([[position.coords.latitude, position.coords.longitude]])});
         break;
       default:
-        this.setState({map_center: [position.coords.latitude, position.coords.longitude]});
+        this.setState({mapCenter: [position.coords.latitude, position.coords.longitude]});
     };
   }
 
@@ -80,11 +82,6 @@ class App extends React.Component {
     this.getLocation()
   };
 
-
-  isUserLggedIn() {
-
-    return this.props.user != null;
-  }
 
   imageClick(iconStatus) {
 
@@ -110,21 +107,20 @@ render(){
         <h1><center>MASK MAP</center></h1>
       </header>
 
-      {!this.isUserLggedIn() && this.getLineSeparator()}
-      {!this.isUserLggedIn() && this.getLineSeparator()}
+      {this.getLineSeparator()}
+      {this.getLineSeparator()}
 
       <Emojis onClick = {(param) => this.imageClick(param)}
-        icon1_list = {this.state.icon1_list}
-        icon2_list = {this.state.icon2_list}
-        icon3_list = {this.state.icon3_list}
-        icon_status = {this.state.icon_status}
-        is_user_logged_in = {this.isUserLggedIn()}>
+        icon1List = {this.state.icon1List}
+        icon2List = {this.state.icon2List}
+        icon3List = {this.state.icon3List}
+        iconStatus = {this.state.iconStatus}>
       </Emojis>
 
-      {!this.isUserLggedIn() && <PathMap map_center = {this.state.map_center}
-        icon1_list = {this.state.icon1_list}
-        icon2_list = {this.state.icon2_list}
-        icon3_list = {this.state.icon3_list}/>
+      {<PathMap mapCenter = {this.state.mapCenter}
+        icon1List = {this.state.icon1List}
+        icon2List = {this.state.icon2List}
+        icon3List = {this.state.icon3List}/>
       }
 
     {this.getLineSeparator()}
