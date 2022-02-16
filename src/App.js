@@ -1,4 +1,6 @@
 import React from 'react';
+import {CSVLink, CSVDownload} from 'react-csv';
+
 
 //Internal Classes
 import Emojis from './Emojis.js';
@@ -140,6 +142,7 @@ render(){
 
       <header className="App-header">
         <h1><center>MASK MAP</center></h1>
+        <CSVLink data={this.state.dataDict}>Download</CSVLink>
       </header>
 
       {this.getLineSeparator()}
