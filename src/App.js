@@ -1,5 +1,6 @@
 import React from 'react';
 import {CSVLink, CSVDownload} from 'react-csv';
+import Button from '@material-ui/core/Button';
 
 
 //Internal Classes
@@ -129,7 +130,7 @@ render(){
 
     {this.getLineSeparator()}
     {this.getLineSeparator()}
-    <button><CSVLink data={this.state.dataDict}>Download CSV</CSVLink></button>
+    <Button variant="contained"><CSVLink data={this.state.dataDict}>Download CSV</CSVLink></Button>
     {this.getLineSeparator()}
     {this.getLineSeparator()}
 
