@@ -53,11 +53,19 @@ class App extends React.Component {
       }
   }
 
-  createCSV(columnDelimiter = ",", lineDelimiter = "\n"){
+  createCSV(){
 
     let result, ctr
+    const columnDelimiter = ","
+    const lineDelimiter = "\n"
     const data = this.state.dataDict
-    const keys = Object.keys(this.state.dataDict[0]);
+
+    if (data.length < 1) {
+      alert("No data recorded yet. Press an icon to begin.");
+      return
+    }
+
+    const keys = Object.keys(data[0]);
     result = ""
     result += keys.join(columnDelimiter)
     result += lineDelimiter
@@ -68,7 +76,6 @@ class App extends React.Component {
         if (ctr > 0) {
           result += columnDelimiter
         }
-
         result += typeof item[key] === "string" && item[key].includes(columnDelimiter) ? `"${item[key]}"` : item[key]
         ctr++
       })
