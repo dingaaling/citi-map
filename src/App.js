@@ -13,7 +13,7 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { mapCenter : [startLat, startLon],
+    this.state = { mapCenter : [startLat, startLon], dataDict : [],
                   icon1List : [], icon2List : [], icon3List : []};
     this.showPosition = this.showPosition.bind(this)
     this.imageClick = this.imageClick.bind(this)
@@ -53,6 +53,39 @@ class App extends React.Component {
       }
   }
 
+  createCSV(){
+
+    let result, ctr
+    const columnDelimiter = ","
+    const lineDelimiter = "\n"
+    const data = this.state.dataDict
+
+    if (data.length < 1) {
+      alert("No data recorded yet. Press an icon to begin.");
+      return
+    }
+
+    const keys = Object.keys(data[0]);
+    result = ""
+    result += keys.join(columnDelimiter)
+    result += lineDelimiter
+
+    data.forEach(item => {
+      ctr = 0
+      keys.forEach(key => {
+        if (ctr > 0) {
+          result += columnDelimiter
+        }
+        result += typeof item[key] === "string" && item[key].includes(columnDelimiter) ? `"${item[key]}"` : item[key]
+        ctr++
+      })
+      result += lineDelimiter
+    })
+
+    return result
+
+  }
+
   updateData(position, iconStatus) {
 
     let body = {
@@ -62,6 +95,8 @@ class App extends React.Component {
       longitude : position.coords.longitude,
       accuracy: position.coords.accuracy,
     };
+
+    this.setState({dataDict: this.state.dataDict.concat(body)});
 
     switch (iconStatus) {
       case 0:
