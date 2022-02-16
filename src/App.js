@@ -1,4 +1,7 @@
 import React from 'react';
+import {CSVLink, CSVDownload} from 'react-csv';
+import Button from '@material-ui/core/Button';
+
 
 //Internal Classes
 import Emojis from './Emojis.js';
@@ -51,39 +54,6 @@ class App extends React.Component {
       } else {
           alert("Geolocation is not supported by this browser. To log data, please enable Location Services for your browser.");
       }
-  }
-
-  createCSV(){
-
-    let result, ctr
-    const columnDelimiter = ","
-    const lineDelimiter = "\n"
-    const data = this.state.dataDict
-
-    if (data.length < 1) {
-      alert("No data recorded yet. Press an icon to begin.");
-      return
-    }
-
-    const keys = Object.keys(data[0]);
-    result = ""
-    result += keys.join(columnDelimiter)
-    result += lineDelimiter
-
-    data.forEach(item => {
-      ctr = 0
-      keys.forEach(key => {
-        if (ctr > 0) {
-          result += columnDelimiter
-        }
-        result += typeof item[key] === "string" && item[key].includes(columnDelimiter) ? `"${item[key]}"` : item[key]
-        ctr++
-      })
-      result += lineDelimiter
-    })
-
-    return result
-
   }
 
   updateData(position, iconStatus) {
@@ -160,6 +130,10 @@ render(){
 
     {this.getLineSeparator()}
     {this.getLineSeparator()}
+    <Button variant="contained"><CSVLink data={this.state.dataDict}>Download CSV</CSVLink></Button>
+    {this.getLineSeparator()}
+    {this.getLineSeparator()}
+
 
      </div>
     );
