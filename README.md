@@ -2,9 +2,9 @@
 
 # Citi Map: Urban Data Collection & Mapping Tool
 
-Citi Map is a React template for creating a web app for collecting on-the-ground data and visualizing on a map. The tool allows users to click on icons that represent categories of items or behaviors occurring around them. For example, presence of trash piles or the mask wearing behavior of people around them, as seen in the example below. By clicking on the icon that represents the occurrence, this is logged as a count under the icon and as a geolocation point on the map. With Citi Map, users may easily collect data of their interest while moving through a city. 
+Citi Map is a React template for creating a web app to collect on-the-ground data to visualize on a map. The tool allows users to click on icons that represent categories of items or behaviors occurring around them. For example, presence of trash piles, cherry blossoms in bloom, or mask wearing behavior, as seen in the example below. By clicking on the icon that represents the occurrence, the user logs a count under the respective icon and as a geolocation point on the map. With Citi Map, users may easily collect timestamped, geolocation data of their interest while moving around a city. 
 
-Data collected through Citi Map can be visualized through the map interface itself or downloaded as a CSV. The data points saved simply are: Time, GPS Location, and Icon.
+Data collected through Citi Map can be visualized through the map interface itself or downloaded as a CSV. The data points saved simply are: Timestamp, GPS Coordinates, and Icon Number.
 
 ## Getting Started
 
