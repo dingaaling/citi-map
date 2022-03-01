@@ -15,7 +15,7 @@ Data collected through Citi Map can be visualized through the map interface itse
 
 ## Hosting the App
 
-The app may be hosted on any platform of your choice. Here, is an example of how to host it through Firebase. For more details, refer to ![Firebase documentation](https://firebase.google.com/docs/web/setup).
+The app may be hosted on any platform of your choice. Here, is an example of how to host it through Firebase. For more details, refer to [Firebase documentation](https://firebase.google.com/docs/web/setup).
 1. Run `yarn add firebase`
 2. Run `firebase init` on the command line and work through the prompts
 3. Run `yarn build`
