@@ -24,17 +24,6 @@ render(){
                   </Marker>
                 )}
 
-                {this.props.icon2List.map((position, idx) =>
-                  <Marker key={`marker-${idx}`} position={position} icon={ icon2 }>
-                  </Marker>
-                )}
-
-                {this.props.icon3List.map((position, idx) =>
-                  <Marker key={`marker-${idx}`} position={position} icon={ icon3 }>
-                  </Marker>
-                )}
-
-
                 </Map>
           </Grid>
           <Grid item xs={2}></Grid>
