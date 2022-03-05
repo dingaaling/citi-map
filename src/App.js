@@ -109,7 +109,7 @@ render(){
     <div className="App">
 
       <header className="App-header">
-        <h1><center>MASK MAP</center></h1>
+        <h1><center>SOUND MAP</center></h1>
       </header>
 
       {this.getLineSeparator()}
