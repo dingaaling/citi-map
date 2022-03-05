@@ -36,5 +36,17 @@ const icon3 = new L.Icon({
     className: 'none'
 });
 
+const icon4 = new L.Icon({
+    iconUrl: require('./images/icon4.png'),
+    iconRetinaUrl: require('./images/icon4.png'),
+    iconAnchor: null,
+    popupAnchor: null,
+    shadowUrl: null,
+    shadowSize: [0,0],
+    shadowAnchor: null,
+    iconSize: new L.Point(15,15),
+    className: 'none'
+});
 
-export { icon1, icon2, icon3 };
+
+export { icon1, icon2, icon3, icon4 };
