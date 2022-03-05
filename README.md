@@ -8,7 +8,7 @@ Data collected through Citi Map can be visualized through the map interface itse
 
 ## Getting Started
 
-1. Clone the repo (or branch) template depending on the number of items you plan to log (`trash_1object` - 1 item, `sound_map` - 2 items, `main` or `trash_map` - 3 items, `light_map` - 4 items)
+1. Clone the repo (or branch) template depending on the number of items you plan to log (`trash_map_1object` - 1 item, `sound_map` - 2 items, `main` or `trash_map` - 3 items, `light_map` - 4 items)
 2. Run `yarn install` to download the required packages
 3. Upload your images to the `src/images/` folder. Name them in a format like `icon1.png`, `icon2.png`, etc. starting your numbering from 1 and up to 4. Note: for best results, use square sized images (e.g. 80 x 80)
 4. Run `yarn start` to launch the app
