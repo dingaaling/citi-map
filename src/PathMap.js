@@ -2,7 +2,7 @@ import React from 'react';
 
 import Grid from '@material-ui/core/Grid';
 import {  Map, TileLayer, Marker } from 'react-leaflet'
-import { icon1, icon2, icon3 } from './icon';
+import { icon1, icon2 } from './icon';
 
 class PathMap extends React.Component {
 
@@ -26,11 +26,6 @@ render(){
 
                 {this.props.icon2List.map((position, idx) =>
                   <Marker key={`marker-${idx}`} position={position} icon={ icon2 }>
-                  </Marker>
-                )}
-
-                {this.props.icon3List.map((position, idx) =>
-                  <Marker key={`marker-${idx}`} position={position} icon={ icon3 }>
                   </Marker>
                 )}
 

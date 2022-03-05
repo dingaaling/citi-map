@@ -1,7 +1,7 @@
 import React from 'react';
 import {CSVLink, CSVDownload} from 'react-csv';
 import Button from '@material-ui/core/Button';
-
+import Box from '@material-ui/core/Box';
 
 //Internal Classes
 import Emojis from './Emojis.js';
@@ -17,7 +17,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { mapCenter : [startLat, startLon], dataDict : [],
-                  icon1List : [], icon2List : [], icon3List : []};
+                  icon1List : [], icon2List : []};
     this.showPosition = this.showPosition.bind(this)
     this.imageClick = this.imageClick.bind(this)
     this.updateData = this.updateData.bind(this)
@@ -75,9 +75,6 @@ class App extends React.Component {
       case 1:
         this.setState({icon2List: this.state.icon2List.concat([[position.coords.latitude, position.coords.longitude]])});
         break;
-      case 2:
-        this.setState({icon3List: this.state.icon3List.concat([[position.coords.latitude, position.coords.longitude]])});
-        break;
       default:
         this.setState({mapCenter: [position.coords.latitude, position.coords.longitude]});
     };
@@ -118,20 +115,17 @@ render(){
       <Emojis onClick = {(param) => this.imageClick(param)}
         icon1List = {this.state.icon1List}
         icon2List = {this.state.icon2List}
-        icon3List = {this.state.icon3List}
         iconStatus = {this.state.iconStatus}>
       </Emojis>
 
       {<PathMap mapCenter = {this.state.mapCenter}
         icon1List = {this.state.icon1List}
-        icon2List = {this.state.icon2List}
-        icon3List = {this.state.icon3List}/>
+        icon2List = {this.state.icon2List}/>
       }
 
     {this.getLineSeparator()}
     {this.getLineSeparator()}
-    <Button variant="contained"><CSVLink data={this.state.dataDict}>Download CSV</CSVLink></Button>
-    {this.getLineSeparator()}
+    <Box textAlign='center'><Button variant="contained"><CSVLink data={this.state.dataDict}>Download CSV</CSVLink></Button></Box>    {this.getLineSeparator()}
     {this.getLineSeparator()}
 
 
