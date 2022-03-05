@@ -1,7 +1,7 @@
 import React from 'react';
 import {CSVLink, CSVDownload} from 'react-csv';
 import Button from '@material-ui/core/Button';
-
+import Box from '@material-ui/core/Box';
 
 //Internal Classes
 import Emojis from './Emojis.js';
@@ -130,7 +130,7 @@ render(){
 
     {this.getLineSeparator()}
     {this.getLineSeparator()}
-    <Button variant="contained"><CSVLink data={this.state.dataDict}>Download CSV</CSVLink></Button>
+    <Box textAlign='center'><Button variant="contained"><CSVLink data={this.state.dataDict}>Download CSV</CSVLink></Button></Box>
     {this.getLineSeparator()}
     {this.getLineSeparator()}
 
