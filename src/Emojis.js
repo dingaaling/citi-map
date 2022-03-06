@@ -32,7 +32,7 @@ render(){
           <center><h3>{this.props.icon3List.length}</h3></center>
         </Grid>
         <Grid item xs={3}>
-          <center><h3>{this.props.icon3List.length}</h3></center>
+          <center><h3>{this.props.icon4List.length}</h3></center>
         </Grid>
       </Grid>
     }
