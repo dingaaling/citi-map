@@ -6,6 +6,11 @@ Citi Map is a React template for creating a web app to collect on-the-ground dat
 
 Data collected through Citi Map can be visualized through the map interface itself or downloaded as a CSV. The data points saved simply are: Timestamp, GPS Coordinates, and Icon Number.
 
+## Requirements
+
+- Node V16.0.0 or higher 
+- Yarn V1.17.3 or higer 
+
 ## Getting Started
 
 1. Clone the repo (or branch) template depending on the number of items you plan to log (`trash_map_1object` - 1 item, `sound_map` - 2 items, `main` or `trash_map` - 3 items, `light_map` - 4 items)
