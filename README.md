@@ -34,6 +34,5 @@ The app may be hosted on any platform of your choice. Here, is an example of how
 
 ## Examples
 
-![Mask Map Screenshot](https://user-images.githubusercontent.com/5104098/154335000-b60abd1e-fb4e-4ca4-bfad-fc354d20cb7b.png)
-
-[Mask Map](https://github.com/dingaaling/mask-map) was the first iteration of Citi Map. The project's goal was to collect real-time mask behavior data around NYC in 2020 and 2021. 20,000+ data points collected in this time period demonstrated the changes in mask wearing practices across space in time. Learn more about the project results [here](https://jending.medium.com/to-all-the-masks-ive-loved-c72331644fb0).
+- [Mask Map](https://maskmap.us) was the first iteration of Citi Map. The project's goal was to collect real-time mask behavior data around NYC in 2020 and 2021. 20,000+ data points collected in this time period demonstrated the changes in mask wearing practices across space in time. Learn more about the project results [here](https://jending.medium.com/to-all-the-masks-ive-loved-c72331644fb0).
+- [Street Lighting Map](https://street-lighting-map-90b94.web.app/)
