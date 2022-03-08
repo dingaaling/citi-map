@@ -1,11 +1,22 @@
 import React from 'react';
-import {CSVLink, CSVDownload} from 'react-csv';
+import {CSVLink} from 'react-csv';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 
 //Internal Classes
 import Emojis from './Emojis.js';
 import PathMap from './PathMap.js'
+
+/*
+Firebase support. Uncomment these imports if you want to connect the app
+with a realtime fire database
+*/
+
+/*
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/database';
+import { firebaseConfig } from './config.js'
+*/
 
 //Styling
 import './App.css'
@@ -37,11 +48,9 @@ class App extends React.Component {
       case error.PERMISSION_DENIED:
         alert("User denied the request for Geolocation. To log data, please enable Location Services for your browser.")
         throw errorMessage;
-        break;
       case error.TIMEOUT:
         alert("To log data, please enable Location Services for your browser.")
         throw errorMessage;
-        break;
       default:
         alert("To log data, please enable Location Services for your browser.")
         throw errorMessage;
@@ -66,6 +75,12 @@ class App extends React.Component {
       accuracy: position.coords.accuracy,
     };
 
+    /*
+    Uncomment this line if you need to use a firebase realtime database
+    */
+    /*
+    firebaseApp.database().ref('/').push(body);
+    */
     this.setState({dataDict: this.state.dataDict.concat(body)});
 
     switch (iconStatus) {
