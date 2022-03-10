@@ -26,14 +26,13 @@ Data collected through Citi Map can be visualized through the map interface itse
 
 ## Hosting the App on Firebase
 
-The app may be hosted on any platform of your choice. Here is an example of how to host the app and database using Firebase.
+The app may be hosted on any platform of your choice. Here is an example of how to host the app and database using Firebase. To follow these steps you need a google account and the firebase CLI installed on your computer (Follow [these instructions](https://firebase.google.com/docs/cli#install-cli-mac-linux) to install firebase cli tools)
 
 1. Run `yarn add firebase` to install firebase
-2. Follow [these instructions](https://firebase.google.com/docs/cli#install-cli-mac-linux) to install firebase cli tools
-3. Create the project on the Firebase console following Step 1 in this [documentation](https://firebase.google.com/docs/web/setup#create-firebase-project-and-app).
-4. Go to the Project Settings page in your Firebase console and select the `</>` option to add a web app
+2. Create the project on the Firebase console following Step 1 in this [documentation](https://firebase.google.com/docs/web/setup#create-firebase-project-and-app).
+3. Go to the Project Settings page in your Firebase console and select the `</>` option to add a web app
 <img width="250" alt="Screen Shot 2022-03-06 at 8 10 29 PM" src="https://user-images.githubusercontent.com/5104098/156940765-a4869b01-ab1e-4810-8760-1afbfdb6c5eb.png">
-5. Follow the instructions to add Firebase to your web app
+4. Follow the instructions to add Firebase to your web app
 <img width="250" alt="Screen Shot 2022-03-06 at 8 10 04 PM" src="https://user-images.githubusercontent.com/5104098/156940778-824cbdde-f2e2-4a9b-b04f-f943539a1235.png">
 
 - Note: make sure to use `yarn add` instead of `npm install` for installation
@@ -43,18 +42,19 @@ The app may be hosted on any platform of your choice. Here is an example of how 
 8. Select the `Database` and `Hosting options for Firebase CLI features
 
 9. Select `Use an existing project` and connect to the project you created in step 1.
-10. Add Real-time Database using us-central1
-11. Use `build` as your public directory
-12. Yes, configure as a single-page app
-13. Run `yarn build` to compile the project and prepare for deployment
-14. Run `firebase deploy` to deploy the app
+10. Choose `Hosting: Configure files for Firebase Hosting and (optionally) set up GitHub Action deploys
+11. Add Real-time Database using us-central1
+12. Use `build` as your public directory
+13. Yes, configure as a single-page app
+14. Run `yarn build` to compile the project and prepare for deployment
+15. Run `firebase deploy` to deploy the app
 
 ## Connecting the App with a database
 
 ### Using a firebase realtime database
 
 1. Make sure you have a valid project in your Firebase console. If not please refer to Hosting the App on Firebase section of this page
-2 Create a new file `config.js` in the `/src` folder of the app
+2. Create a new file `config.js` in the `/src` folder of the app
 3. Copy the config information provided on your Project settings page in the `/src/config.js` file. Here's an example of the content of the file with some random values:
 
 ```
@@ -70,15 +70,30 @@ export const firebaseConfig = {
 };
 ```
 4. In `App.js` uncomment the firebase imports
-5. In `App.js::updateData` uncomment the following line:
+5. In `App.js::updateData` uncomment the following lines:
+
+```
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+```
+and
 ```
  firebaseApp.database().ref('/').push(body);
  ```
  This is what will be used to push to the database
-4. Go to the Realtime Database page and select Create Database to start logging data.
+ 
+6. On the firebase UI, go to the Realtime Database page and select Create Database to start logging data.
+7. Choose whether you want a test database or a production ready one
+8. Choose a suitable region for your project (If most of the users will be in the US, choose US-central-1, for example)
+9. In your terminal run `yarn build` and `firebase deploy.
+10. Now, if you log data through your app, you should be able to see them in the firebase realtime UI (See attachment below)
+
+<img width="935" alt="Screen Shot 2022-03-10 at 10 22 11 AM" src="https://user-images.githubusercontent.com/26043344/157693849-81603631-9fd6-4f2b-9e61-eb1f32fa74fd.png">
+
+11. Enjoy collecting and analyzing your data!🚀
 
 
 ## Examples
 
 - [Mask Map](https://maskmap.us) was the first iteration of Citi Map. The project's goal was to collect real-time mask behavior data around NYC in 2020 and 2021. 20,000+ data points collected in this time period demonstrated the changes in mask wearing practices across space in time. Learn more about the project results [here](https://jending.medium.com/to-all-the-masks-ive-loved-c72331644fb0).
 - [Street Lighting Map](https://street-lighting-map-90b94.web.app/)
+- [Street Art Locator](https://street-art-locator-1b6fc.web.app/) A tool to collect data about artists performing in your streets. It supports logging data for musicians, performers and painters
