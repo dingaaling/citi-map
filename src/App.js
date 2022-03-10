@@ -22,6 +22,9 @@ import { firebaseConfig } from './config.js'
 import './App.css'
 const startLat = 40.742997028
 const startLon = -73.96749613
+/*
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+*/
 
 class App extends React.Component {
 
