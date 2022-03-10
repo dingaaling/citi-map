@@ -47,11 +47,9 @@ const App = () => {
       case error.PERMISSION_DENIED:
         alert("User denied the request for Geolocation. To log data, please enable Location Services for your browser.")
         throw errorMessage;
-        break;
       case error.TIMEOUT:
         alert("To log data, please enable Location Services for your browser.")
         throw errorMessage;
-        break;
       default:
         alert("To log data, please enable Location Services for your browser.")
         throw errorMessage;
@@ -77,6 +75,13 @@ const App = () => {
     };
 
     setDataDict(oldArray => [...oldArray, body])
+    
+    /*
+    Uncomment this line if you need to use a firebase realtime database
+    */
+    /*
+    firebaseApp.database().ref('/').push(body);
+    */
 
     switch (iconStatus) {
       case 0:
@@ -109,7 +114,7 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <h1><center>MASK MAP</center></h1>
+        <h1><center>CITI MAP</center></h1>
       </header>
 
       {getLineSeparator()}
