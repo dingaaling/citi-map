@@ -1,19 +1,15 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 
-class Emoji extends React.Component {
-
-render(){
-
+const Emoji = (props) => {
+  
   return (
     <Grid item xs={4}>
       <div className="emoji-class">
-        <center><img src={this.props.img} alt={"emoji"} onClick={this.props.function} width="80"/></center>
+        <center><img src={props.img} alt={"emoji"} onClick={props.function} width="80"/></center>
       </div>
     </Grid>
-  );
-}
-
+  )
 }
 
 export default Emoji;

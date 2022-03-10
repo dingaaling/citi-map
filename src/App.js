@@ -1,5 +1,5 @@
-import React from 'react';
-import {CSVLink, CSVDownload} from 'react-csv';
+import React, {useState, useEffect} from 'react';
+import {CSVLink} from 'react-csv';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 
@@ -7,29 +7,39 @@ import Box from '@material-ui/core/Box';
 import Emojis from './Emojis.js';
 import PathMap from './PathMap.js'
 
+/*
+Firebase support. Uncomment these imports if you want to connect the app
+with a realtime fire database
+*/
+
+/*
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/database';
+import { firebaseConfig } from './config.js'
+*/
+
 //Styling
 import './App.css'
 const startLat = 40.742997028
 const startLon = -73.96749613
 
-class App extends React.Component {
+const App = () => {
+  const [mapCenter, setMapCenter] = useState([startLat, startLon]);
+  const [dataDict, setDataDict] = useState([]);
+  const [icon1List, setIcon1List] = useState([]);
+  const [icon2List, setIcon2List] = useState([]);
+  const [icon3List, setIcon3List] = useState([]);
 
-  constructor(props) {
-    super(props);
-    this.state = { mapCenter : [startLat, startLon], dataDict : [],
-                  icon1List : [], icon2List : [], icon3List : []};
-    this.showPosition = this.showPosition.bind(this)
-    this.imageClick = this.imageClick.bind(this)
-    this.updateData = this.updateData.bind(this)
+  useEffect(() => {
+    getLocation()
+  }, [])
 
+  function showPosition(position) {
+    console.log("Logging at: " + position.coords.latitude.toString() +", "+ position.coords.longitude.toString());
+    setMapCenter([position.coords.latitude, position.coords.longitude]);
   }
 
-  showPosition(position) {
-      // console.log("Logging at: " + position.coords.latitude.toString() +", "+ position.coords.longitude.toString());
-      this.setState({latitude : position.coords.latitude, longitude : position.coords.longitude, mapCenter : [position.coords.latitude, position.coords.longitude]});
-  }
-
-  showError(error) {
+  function showError(error) {
 
     const errorMessage =  { code : 1, message : "Location Settings error" };
 
@@ -48,15 +58,15 @@ class App extends React.Component {
     }
   }
 
-  getLocation() {
+  function getLocation() {
       if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(this.showPosition, this.showError, {timeout:20000,enableHighAccuracy:true});
+          navigator.geolocation.getCurrentPosition(showPosition, showError, {timeout:20000,enableHighAccuracy:true});
       } else {
           alert("Geolocation is not supported by this browser. To log data, please enable Location Services for your browser.");
       }
   }
 
-  updateData(position, iconStatus) {
+  function updateData(position, iconStatus) {
 
     let body = {
       timestamp: new Date().toUTCString(),
@@ -66,78 +76,64 @@ class App extends React.Component {
       accuracy: position.coords.accuracy,
     };
 
-    this.setState({dataDict: this.state.dataDict.concat(body)});
+    setDataDict(oldArray => [...oldArray, body])
 
     switch (iconStatus) {
       case 0:
-        this.setState({icon1List: this.state.icon1List.concat([[position.coords.latitude, position.coords.longitude]])});
+        setIcon1List(oldArray => [...oldArray, [position.coords.latitude, position.coords.longitude]]);
         break;
       case 1:
-        this.setState({icon2List: this.state.icon2List.concat([[position.coords.latitude, position.coords.longitude]])});
+        setIcon2List(oldArray => [...oldArray, [position.coords.latitude, position.coords.longitude]]);
         break;
       case 2:
-        this.setState({icon3List: this.state.icon3List.concat([[position.coords.latitude, position.coords.longitude]])});
+        setIcon3List(oldArray => [...oldArray, [position.coords.latitude, position.coords.longitude]]);
         break;
       default:
-        this.setState({mapCenter: [position.coords.latitude, position.coords.longitude]});
+        setMapCenter([position.coords.latitude, position.coords.longitude]);
     };
   }
 
-  componentDidMount() {
-    this.getLocation()
-  };
-
-
-  imageClick(iconStatus) {
+  function imageClick(iconStatus) {
 
     if(navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => this.updateData(position, iconStatus), this.showError, {timeout:5000,enableHighAccuracy:true});
+        navigator.geolocation.getCurrentPosition((position) => updateData(position, iconStatus), showError, {timeout:5000,enableHighAccuracy:true});
     } else {
       alert("Geolocation error - please refresh page.");
-      }
+    }
+  }
 
-}
-
-getLineSeparator() {
-  return <br></br>;
-}
-
-
-render(){
-
+  function getLineSeparator() {
+    return <br></br>;
+  }
+  
   return (
     <div className="App">
-
       <header className="App-header">
         <h1><center>MASK MAP</center></h1>
       </header>
 
-      {this.getLineSeparator()}
-      {this.getLineSeparator()}
+      {getLineSeparator()}
+      {getLineSeparator()}
 
-      <Emojis onClick = {(param) => this.imageClick(param)}
-        icon1List = {this.state.icon1List}
-        icon2List = {this.state.icon2List}
-        icon3List = {this.state.icon3List}
-        iconStatus = {this.state.iconStatus}>
+      <Emojis onClick = {(param) => imageClick(param)}
+        icon1List = {icon1List}
+        icon2List = {icon2List}
+        icon3List = {icon3List}
+        > 
       </Emojis>
 
-      {<PathMap mapCenter = {this.state.mapCenter}
-        icon1List = {this.state.icon1List}
-        icon2List = {this.state.icon2List}
-        icon3List = {this.state.icon3List}/>
+      {<PathMap mapCenter = {mapCenter}
+        icon1List = {icon1List}
+        icon2List = {icon2List}
+        icon3List = {icon3List}/>
       }
-
-    {this.getLineSeparator()}
-    {this.getLineSeparator()}
-    <Box textAlign='center'><Button variant="contained"><CSVLink data={this.state.dataDict}>Download CSV</CSVLink></Button></Box>    {this.getLineSeparator()}
-    {this.getLineSeparator()}
-
-
-     </div>
-    );
-  }
+      
+      {getLineSeparator()}
+      {getLineSeparator()}
+      <Box textAlign='center'><Button variant="contained"><CSVLink data={dataDict}>Download CSV</CSVLink></Button></Box>    {getLineSeparator()}
+      {getLineSeparator()}
+    </div>
+  )
 }
-
 
 export default App;
