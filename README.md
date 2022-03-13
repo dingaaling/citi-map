@@ -37,7 +37,7 @@ The app may be hosted on any platform of your choice. Here is an example of how 
 - Note: make sure to use `yarn add` instead of `npm install` for installation
 
 4. Run `yarn add firebase` on the command line
-5. Set up the firebase command line tools following this [documentation] (https://firebase.google.com/docs/cli#install-cli-mac-linux)
+5. Set up the firebase command line tools following this [documentation](https://firebase.google.com/docs/cli#install-cli-mac-linux)
 6. Select the `Hosting options for Firebase CLI features
 
 - Select `Use an existing project` and connect to the project you created in step 1.
