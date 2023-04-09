@@ -92,6 +92,7 @@ and
 
 ## Examples
 
+- [Citi Map](https://citimap.org) is a live platform for collecting data on street trash, puddles, and poo.
 - [Mask Map](https://maskmap.us) was the first iteration of Citi Map. The project's goal was to collect real-time mask behavior data around NYC in 2020 and 2021. 20,000+ data points collected in this time period demonstrated the changes in mask wearing practices across space in time. Learn more about the project results [here](https://jending.medium.com/to-all-the-masks-ive-loved-c72331644fb0).
 - [Street Lighting Map](https://street-lighting-map-90b94.web.app/) A tool to log the street lighting levels in different areas around a city. This data can be used to map out safe paths for walks at night.
 - [Street Art Locator](https://street-art-locator-1b6fc.web.app/) A tool to collect data about artists performing in your streets. It supports logging data for musicians, performers and painters
