@@ -90,7 +90,7 @@ and
 10. Enjoy collecting and analyzing your data!🚀
 
 ## Datasets
-- As part of the London Data Week 2023 data collection campaign for puddles, trash bags, and poo, you can [download the data](https://github.com/dingaaling/citi-map/tree/main/data) or [explore the data on Datawrapper](https://www.datawrapper.de/_/ydGIK/)
+- To access the dataset from the London Data Week 2023 data collection campaign for puddles, trash bags, and poo, you can [download the data](https://github.com/dingaaling/citi-map/tree/main/data) or [explore the data on Datawrapper](https://www.datawrapper.de/_/ydGIK/)
 
 ## Examples
 
